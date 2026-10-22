@@ -1,0 +1,23 @@
+#!/bin/sh
+# Refresh a running local check stack from this checkout, without restarting it.
+set -eu
+cd "$(dirname "$0")/.."
+portal_container=${1:-school-payments-live-app-1}
+# A reused image can contain older frontend source. Future bench builds must use ours.
+docker cp frontend/src "$portal_container:/app/frontend/"
+docker cp frontend/index.html "$portal_container:/app/frontend/index.html"
+docker cp frontend/vite.config.js "$portal_container:/app/frontend/vite.config.js"
+cd frontend
+./node_modules/.bin/vite build --base=/assets/education/frontend/
+npm run copy-html-entry
+cd ..
+docker exec -i "$portal_container" /app/.venv/bin/python - <<'PY'
+import os
+os.chdir('/app/.runtime/bench/sites')
+import frappe
+frappe.init(site=os.environ['SCHOOL_SITE_NAME'])
+frappe.connect()
+frappe.clear_cache()
+frappe.destroy()
+print('Portal assets refreshed; website cache cleared')
+PY

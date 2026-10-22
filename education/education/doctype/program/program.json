@@ -1,0 +1,238 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:program_name",
+ "creation": "2026-08-12 20:54:26.034119",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "program_name",
+  "program_level",
+  "minimum_unit_load",
+  "area_of_study",
+  "hero_image",
+  "column_break_3",
+  "program_abbreviation",
+  "maximum_unit_load",
+  "required_thesis",
+  "column_break_pzsx",
+  "company",
+  "department",
+  "section_break_nuty",
+  "short_description",
+  "full_description",
+  "connections_tab"
+ ],
+ "fields": [
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Program Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "program_abbreviation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Program Abbreviation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "connections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections",
+   "show_dashboard": 1
+  },
+  {
+   "fieldname": "hero_image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "area_of_study",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Area of Study",
+   "options": "Area of Study",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "program_level",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Program Level",
+   "options": "Program Level",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "column_break_pzsx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "required_thesis",
+   "fieldtype": "Check",
+   "label": "Required Thesis"
+  },
+  {
+   "fieldname": "section_break_nuty",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Small Text",
+   "label": "Short Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "full_description",
+   "fieldtype": "Text Editor",
+   "label": "Full Description"
+  },
+  {
+   "fieldname": "minimum_unit_load",
+   "fieldtype": "Float",
+   "label": "Minimum Unit Load"
+  },
+  {
+   "fieldname": "maximum_unit_load",
+   "fieldtype": "Float",
+   "label": "Maximum Unit Load"
+  }
+ ],
+ "image_field": "hero_image",
+ "links": [
+  {
+   "group": "Admission and Enrollments",
+   "link_doctype": "Course",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Admission and Enrollments",
+   "link_doctype": "Admission Register",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Admission and Enrollments",
+   "link_doctype": "Course Enrollment",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Student Activity",
+   "link_doctype": "Student Batch Name",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Student Activity",
+   "link_doctype": "Academic Plan",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Student Activity",
+   "link_doctype": "Student Log",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Fee",
+   "link_doctype": "Fee Structure",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Fee",
+   "link_doctype": "Fee Schedule",
+   "link_fieldname": "program"
+  },
+  {
+   "group": "Fee",
+   "link_doctype": "Fee Plan",
+   "link_fieldname": "program"
+  }
+ ],
+ "modified": "2026-09-21 20:01:22.776998",
+ "modified_by": "Administrator",
+ "module": "Education",
+ "name": "Program",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academics User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Instructor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Student",
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "program_name",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

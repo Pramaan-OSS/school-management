@@ -1,0 +1,410 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2015-09-11 11:50:09.740807",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "admission_register",
+  "first_name",
+  "middle_name",
+  "last_name",
+  "course",
+  "course_fee_amount",
+  "student",
+  "is_already_a_student",
+  "fee_term",
+  "column_break_8",
+  "company",
+  "naming_series",
+  "application_date",
+  "application_status",
+  "admission_based_on",
+  "registration_fee_item",
+  "registration_fee_amount",
+  "registration_fee",
+  "section_break_xuzu",
+  "email_address",
+  "student_batch",
+  "image",
+  "column_break_lvby",
+  "academic_year",
+  "academic_term",
+  "paid",
+  "section_break_23",
+  "title",
+  "amended_from",
+  "personal_details_tab",
+  "section_break_4",
+  "date_of_birth",
+  "gender",
+  "blood_group",
+  "column_break_12",
+  "student_mobile_number",
+  "nationality",
+  "relations_tab",
+  "section_break_20",
+  "guardians",
+  "section_break_21",
+  "siblings",
+  "address_tab",
+  "home_address",
+  "address_line_1",
+  "address_line_2",
+  "city",
+  "column_break_23",
+  "state",
+  "pincode",
+  "country"
+ ],
+ "fields": [
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "label": "Last Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "paid",
+   "fieldtype": "Check",
+   "label": "Paid",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "no_copy": 1,
+   "options": "EDU-APP-.YYYY.-",
+   "set_only_once": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Applied",
+   "fieldname": "application_status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Application Status",
+   "no_copy": 1,
+   "options": "Applied\nApproved\nRejected\nAdmitted",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date"
+  },
+  {
+   "fetch_from": "admission_register.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "admission_register.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "fieldname": "blood_group",
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "\nA+\nA-\nB+\nB-\nO+\nO-\nAB+\nAB-"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "student_mobile_number",
+   "fieldtype": "Data",
+   "label": "Student Mobile Number"
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
+  },
+  {
+   "fieldname": "home_address",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break",
+   "label": "Guardian Details"
+  },
+  {
+   "fieldname": "guardians",
+   "fieldtype": "Table",
+   "label": "Guardians",
+   "options": "Student Guardian"
+  },
+  {
+   "fieldname": "section_break_21",
+   "fieldtype": "Section Break",
+   "label": "Sibling Details"
+  },
+  {
+   "fieldname": "siblings",
+   "fieldtype": "Table",
+   "label": "Siblings",
+   "options": "Student Sibling"
+  },
+  {
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Student Applicant",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_xuzu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_lvby",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personal_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "relations_tab",
+   "fieldtype": "Tab Break",
+   "label": "Relations"
+  },
+  {
+   "fieldname": "address_tab",
+   "fieldtype": "Tab Break",
+   "label": "Address"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "admission_register",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Admission Register",
+   "options": "Admission Register",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "admission_register.admission_based_on",
+   "fieldname": "admission_based_on",
+   "fieldtype": "Select",
+   "label": "Admission Based on",
+   "options": "\nProgram\nCourse",
+   "read_only": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "mandatory_depends_on": "eval:doc.admission_based_on===\"Program\";",
+   "options": "Course",
+   "read_only_depends_on": "eval:doc.admission_based_on===\"Course\";"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "admission_register.registration_fee_item",
+   "fieldname": "registration_fee_item",
+   "fieldtype": "Link",
+   "label": "Registration Fee Item",
+   "link_filters": "[[\"Item\",\"is_stock_item\",\"=\",0]]",
+   "options": "Item"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_already_a_student",
+   "fieldtype": "Check",
+   "label": "Is already a Student"
+  },
+  {
+   "depends_on": "eval:doc.is_already_a_student || doc.application_status===\"Approved\";",
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "mandatory_depends_on": "is_already_a_student",
+   "options": "Student",
+   "read_only_depends_on": "eval:doc.application_status===\"Approved\";"
+  },
+  {
+   "default": "0",
+   "fieldname": "registration_fee",
+   "fieldtype": "Check",
+   "label": "Registration Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "registration_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Registration Fee Amount",
+   "non_negative": 1,
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Course Fee Amount",
+   "non_negative": 1,
+   "options": "Company:company:default_currency",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "fee_term",
+   "fieldtype": "Link",
+   "label": "Fee Term",
+   "options": "Fee Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_batch",
+   "fieldtype": "Link",
+   "label": "Student Batch",
+   "options": "Student Batch Name"
+  }
+ ],
+ "image_field": "image",
+ "links": [],
+ "modified": "2026-09-29 20:19:12.337753",
+ "modified_by": "Administrator",
+ "module": "Education",
+ "name": "Student Applicant",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academics User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}

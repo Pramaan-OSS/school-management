@@ -1,0 +1,46 @@
+name: ${SCHOOL_COMPOSE_PROJECT:-school-management}
+services:
+  database:
+    image: mariadb:11.8
+    environment:
+      MARIADB_ROOT_PASSWORD: ${LOCAL_DB_PASSWORD:?Run ./start to generate local settings}
+    command: [--character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci]
+    volumes:
+      - database:/var/lib/mysql
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+  cache:
+    image: redis:8.2-alpine
+    command: [redis-server, --appendonly, 'yes']
+    volumes:
+      - cache:/data
+    healthcheck:
+      test: [CMD, redis-cli, -e, FT._LIST]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    env_file: ../.env
+    environment:
+      FRAPPE_PRELOAD_DATABASE_DRIVERS: none
+      FRAPPE_BIND_ADDR: 0.0.0.0
+      FRAPPE_BENCH_ROOT: /app/.runtime/bench
+      NODE_PATH: /app/.runtime/socket/node_modules
+      PATH: /app/.venv/bin:/usr/local/bin:/usr/bin:/bin
+    ports:
+      - "${SCHOOL_LOCAL_PORT:-3037}:8000"
+    volumes:
+      - sites:/app/.runtime/bench
+    depends_on:
+      database: {condition: service_healthy}
+      cache: {condition: service_healthy}
+volumes:
+  database:
+  cache:
+  sites:

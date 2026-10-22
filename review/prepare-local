@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Prepare local dependencies only. Never downloads anything at app runtime.
+set -euo pipefail
+root="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$root"
+command -v uv >/dev/null
+command -v node >/dev/null
+node -e 'if (Number(process.versions.node.split(".")[0]) < 22) throw new Error("Node 22 or newer is required.")'
+
+# Pinned framework and base accounting app, fetched once at build time.
+mkdir -p vendor
+if [ ! -d vendor/framework/.git ]; then
+  git init -q vendor/framework
+  git -C vendor/framework remote add origin https://github.com/frappe/frappe.git
+  git -C vendor/framework fetch --depth 1 origin 4f5ca6e6f3e2c0c4c3000b0d1ae78a91b61d2a38
+fi
+git -C vendor/framework checkout --detach 4f5ca6e6f3e2c0c4c3000b0d1ae78a91b61d2a38
+if [ ! -d vendor/erpnext/.git ]; then
+  git init -q vendor/erpnext
+  git -C vendor/erpnext remote add origin https://github.com/frappe/erpnext.git
+  git -C vendor/erpnext fetch --depth 1 origin 8d60c082960de0934311021c9b8adf281b02e66c
+fi
+git -C vendor/erpnext checkout --detach 8d60c082960de0934311021c9b8adf281b02e66c
+
+uv venv --python 3.14 .venv
+.venv/bin/python review/brand_framework.py
+uv pip install --python .venv/bin/python -e vendor/framework -e vendor/erpnext -e .
+# The framework's time-freeze test helper needs this; the shipped suite uses it.
+uv pip install --python .venv/bin/python "freezegun~=1.5.5"
+
+# Desk asset builds need the conventional bench layout for the build scripts.
+mkdir -p apps sites
+ln -sfn ../vendor/framework apps/frappe
+ln -sfn ../vendor/erpnext apps/erpnext
+ln -sfn .. apps/education
+printf 'frappe\nerpnext\education\n' > sites/apps.txt
+printf '{\n  "webserver_port": 8000\n}\n' > sites/common_site_config.json
+# A real bench serves each app's public folder through sites/assets and the
+# build writes its hashed outputs there too; mirror that layout.
+mkdir -p sites/assets
+ln -sfn ../../vendor/framework/frappe/public sites/assets/frappe
+ln -sfn ../../vendor/erpnext/erpnext/public sites/assets/erpnext
+ln -sfn ../../education/public sites/assets/education
+export FRAPPE_BENCH_ROOT="$root"
+(cd apps/frappe && yarn install --check-files)
+(cd apps/erpnext && yarn install)
+yarn install --check-files
+# The framework's desk styles import through its public folder's node_modules;
+# a fresh install rewrites the package tree, so link only after installing.
+ln -sfn ../../node_modules vendor/framework/frappe/public/node_modules
+(cd apps/frappe && yarn build)
+(cd apps/erpnext && yarn build)
+yarn build
+
+# Local event server dependencies.
+mkdir -p .runtime/socket
+cp scripts/socket/package.json scripts/socket/package-lock.json .runtime/socket/
+npm --prefix .runtime/socket ci --no-audit --no-fund

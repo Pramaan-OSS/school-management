@@ -1,0 +1,208 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "EDU-RES-.YYYY.-.#####",
+ "creation": "2026-08-12 20:54:25.536074",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "assessment_plan",
+  "course",
+  "subject",
+  "assignment_type",
+  "academic_year",
+  "academic_term",
+  "column_break_3",
+  "student",
+  "student_name",
+  "student_batch",
+  "assessment_group",
+  "section_break_8",
+  "score",
+  "maximum_score",
+  "column_break_11",
+  "percentage",
+  "section_break_13",
+  "comment",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "assessment_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assessment Plan",
+   "options": "Assessment Plan",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "assessment_plan.course",
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.subject",
+   "fieldname": "subject",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Subject",
+   "options": "Subject",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.assignment_type",
+   "fieldname": "assignment_type",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Assignment Type",
+   "options": "Assignment Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.academic_year",
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.academic_term",
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "student.student_name",
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Student Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.student_batch",
+   "fieldname": "student_batch",
+   "fieldtype": "Link",
+   "label": "Student Batch",
+   "options": "Student Batch Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assessment_plan.assessment_group",
+   "fieldname": "assessment_group",
+   "fieldtype": "Link",
+   "label": "Assessment Group",
+   "options": "Assessment Group",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "score",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Score",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "assessment_plan.maximum_assessment_score",
+   "fieldname": "maximum_score",
+   "fieldtype": "Float",
+   "label": "Maximum Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assessment Result",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-29 20:19:09.806884",
+ "modified_by": "Administrator",
+ "module": "Education",
+ "name": "Assessment Result",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academics User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Student",
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "student_name"
+}

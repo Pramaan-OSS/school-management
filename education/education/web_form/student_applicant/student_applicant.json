@@ -1,0 +1,123 @@
+{
+ "allow_comments": 0,
+ "allow_delete": 0,
+ "allow_edit": 0,
+ "allow_incomplete": 0,
+ "allow_multiple": 1,
+ "allow_print": 0,
+ "anonymous": 0,
+ "apply_document_permissions": 0,
+ "condition_json": "[]",
+ "creation": "2016-09-22 13:10:10.792735",
+ "doc_type": "Student Applicant",
+ "docstatus": 0,
+ "doctype": "Web Form",
+ "idx": 0,
+ "is_standard": 1,
+ "list_columns": [],
+ "login_required": 1,
+ "max_attachment_size": 0,
+ "modified": "2026-10-17 19:19:04.180439",
+ "modified_by": "Administrator",
+ "module": "Education",
+ "name": "student-applicant",
+ "owner": "Administrator",
+ "published": 1,
+ "route": "student-applicant",
+ "show_attachments": 0,
+ "show_list": 0,
+ "show_sidebar": 1,
+ "success_url": "",
+ "title": "Student Applicant",
+ "web_form_fields": [
+  {
+   "fieldname": "admission_register",
+   "fieldtype": "Select",
+   "label": "Admission Register",
+   "options": "\n",
+   "reqd": 1
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_mobile_number",
+   "fieldtype": "Data",
+   "label": "Student Mobile Number"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Select",
+   "label": "Course",
+   "options": "\n",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  }
+ ]
+}

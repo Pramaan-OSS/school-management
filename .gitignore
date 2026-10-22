@@ -1,0 +1,13 @@
+__pycache__/
+.env
+.runtime/
+.scratch/
+.tools/
+.venv/
+*.log
+*.pyc
+apps/
+frontend/node_modules/
+node_modules/
+sites/
+vendor/

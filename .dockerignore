@@ -1,0 +1,14 @@
+.git
+.env
+.runtime
+.scratch
+.tools
+.venv
+apps
+sites
+vendor
+node_modules
+frontend/node_modules
+__pycache__
+*.pyc
+*.log

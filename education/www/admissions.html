@@ -1,0 +1,13 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<h1>{{ _("Student Admissions") }}</h1>
+{% for doc in admissions %}
+  {% include "education/doctype/student_admission/templates/student_admission_row.html" %}
+{% else %}
+  <p>{{ _("No admissions are open right now.") }}</p>
+{% endfor %}
+<nav aria-label="{{ _('Admissions pages') }}">
+  {% if start %}<a href="/admissions?start={{ [0, start - 20]|max }}">{{ _("Previous") }}</a>{% endif %}
+  {% if has_more %}<a href="/admissions?start={{ start + 20 }}">{{ _("Next") }}</a>{% endif %}
+</nav>
+{% endblock %}

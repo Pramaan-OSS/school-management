@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "postinstall": "cd frontend && yarn install --check-files",
+    "dev": "cd frontend && yarn dev",
+    "build": "cd frontend && yarn build"
+  },
+  "dependencies": {
+    "playwright": "^1.64.1"
+  }
+}

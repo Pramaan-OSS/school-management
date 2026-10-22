@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "HTL-ROOM-.YYYY.-.#####",
+ "creation": "2015-09-09 16:20:14.613061",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "room_name",
+  "room_number",
+  "room_type",
+  "column_break_type",
+  "seating_capacity",
+  "disabled",
+  "location_section",
+  "company",
+  "campus",
+  "column_break_location",
+  "building",
+  "floor",
+  "facilities_section",
+  "facilities",
+  "connections_tab"
+ ],
+ "fields": [
+  {
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "label": "Room Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Room Number"
+  },
+  {
+   "fieldname": "room_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Type",
+   "options": "\nClassroom\nLecture Hall\nLaboratory\nComputer Lab\nExam Hall\nLibrary\nAuditorium\nSports Facility\nMeeting Room\nOther"
+  },
+  {
+   "fieldname": "column_break_type",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "seating_capacity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Seating Capacity",
+   "non_negative": 1
+  },
+  {
+   "default": "0",
+   "description": "Disabled rooms cannot be picked for new schedules or bookings.",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
+  },
+  {
+   "fieldname": "location_section",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "description": "Required on new rooms once this company has a campus. Leave blank to keep an existing room shared across sites.",
+   "fieldname": "campus",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Campus",
+   "options": "Campus"
+  },
+  {
+   "fieldname": "column_break_location",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "The room takes its campus from the building.",
+   "fieldname": "building",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Building",
+   "options": "Building"
+  },
+  {
+   "fieldname": "connections_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connections",
+   "show_dashboard": 1
+  },
+  {
+   "fieldname": "floor",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Floor",
+   "options": "Floor"
+  },
+  {
+   "fieldname": "facilities_section",
+   "fieldtype": "Section Break",
+   "label": "Facilities"
+  },
+  {
+   "fieldname": "facilities",
+   "fieldtype": "Table",
+   "label": "Facilities",
+   "options": "Room Facility"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-12 21:19:58.351617",
+ "modified_by": "Administrator",
+ "module": "Education",
+ "name": "Room",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Academics User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "room_number,campus",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "room_name"
+}
