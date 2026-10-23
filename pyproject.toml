@@ -7,7 +7,7 @@ description = "School management for admissions, attendance, assessments and fee
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
-dependencies = ["pramaan==0.1.0"]
+dependencies = ["pramaan==0.1.1"]
 
 [build-system]
 requires = ["flit_core >=3.4,<4"]
