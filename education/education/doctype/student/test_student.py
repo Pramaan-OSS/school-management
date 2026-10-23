@@ -41,12 +41,14 @@ class TestStudent(FrappeTestCase):
 class TestPortalContracts(FrappeTestCase):
 	def test_unlinked_user_has_no_student_profile(self):
 		from unittest.mock import patch
+
 		from education.education.api import get_student_info
 		with patch.dict(frappe.session, {'user': 'unlinked@example.com'}), patch.object(frappe.db, 'get_list', return_value=[]):
 			self.assertIsNone(get_student_info())
 
 	def test_student_cannot_read_another_students_grades(self):
 		from unittest.mock import patch
+
 		from education.education.api import get_student_grades
 		with patch.dict(frappe.session, {'user': 'student@example.com'}), patch.object(frappe, 'get_roles', return_value=['Student']), patch.object(frappe.db, 'exists', return_value=None):
 			with self.assertRaises(frappe.PermissionError):

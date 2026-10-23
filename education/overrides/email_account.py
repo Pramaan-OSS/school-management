@@ -1,5 +1,6 @@
 """The framework's mail accounts hold owned addresses, never server credentials."""
 from frappe.email.doctype.email_account.email_account import EmailAccount
+
 from education.pramaan import PramaanError
 
 

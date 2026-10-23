@@ -1,7 +1,9 @@
 """Outgoing mail always uses the single school sender setting."""
-from unittest.mock import patch
-import frappe
 from unittest import TestCase
+from unittest.mock import patch
+
+import frappe
+
 from education.integrations.pramaan_mail import sender_account
 
 
@@ -24,8 +26,9 @@ class TestSchoolSender(TestCase):
     def test_delivery_does_not_vouch_for_a_local_user_as_a_platform_member(self):
         import json
         from unittest.mock import Mock
-        from education.pramaan import PramaanClient
+
         from education.integrations import pramaan_mail
+        from education.pramaan import PramaanClient
 
         headers = {}
         def transport(method, url, sent_headers, body):

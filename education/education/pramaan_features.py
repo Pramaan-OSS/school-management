@@ -9,11 +9,12 @@ import hashlib
 import json
 import uuid
 from datetime import datetime
-from zoneinfo import ZoneInfo
 from urllib.parse import quote
+from zoneinfo import ZoneInfo
 
 import frappe
 from frappe import _
+
 from education.pramaan import PramaanClient, PramaanError
 
 STAFF_ROLES = ["System Manager", "Education Manager", "Instructor", "Academics User"]
@@ -61,7 +62,7 @@ def start_app_connection(connection):
 
 
 def _schedule_bounds(doc):
-    from frappe.utils import to_timedelta, getdate
+    from frappe.utils import getdate, to_timedelta
     day = datetime.combine(getdate(doc.schedule_date), datetime.min.time())
     start = day + to_timedelta(doc.from_time)
     end = day + to_timedelta(doc.to_time)

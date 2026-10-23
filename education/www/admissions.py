@@ -1,6 +1,7 @@
 """Public listing of published, current admission notices."""
 import frappe
 from frappe.utils import cint
+
 from education.education.doctype.student_admission.student_admission import get_admission_list
 
 

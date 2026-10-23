@@ -1,9 +1,11 @@
 """Bank transfers on authorized school invoices and fees, using the existing client."""
 import hashlib
 import json
+
 import frappe
-from education.education.billing import client, get_details, _check_permission
-from education.education.transfers import Transfer, request_body, EXPONENTS
+
+from education.education.billing import _check_permission, client, get_details
+from education.education.transfers import EXPONENTS, Transfer, request_body
 from education.pramaan import PramaanError
 
 

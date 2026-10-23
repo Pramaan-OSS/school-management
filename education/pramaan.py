@@ -1,14 +1,13 @@
 """All outside service calls go through this server-side module."""
 
-from dataclasses import dataclass
-from typing import Literal
 import json
 import os
 import time
-from urllib.parse import quote, urlparse
-from urllib.request import Request, build_opener, HTTPRedirectHandler
+from dataclasses import dataclass
+from typing import ClassVar, Literal
 from urllib.error import HTTPError, URLError
-
+from urllib.parse import quote, urlparse
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 Feature = Literal["fee_payments", "email_delivery"]
 
@@ -117,7 +116,7 @@ def generation_request(inputs):
     """One boundary for generation messages and token limits."""
     if not isinstance(inputs, dict) or "prompt" in inputs or not isinstance(inputs.get("messages"), list) or not inputs["messages"]:
         raise PramaanError("invalid_generation_request")
-    for index, message in enumerate(inputs["messages"]):
+    for _index, message in enumerate(inputs["messages"]):
         if not isinstance(message, dict) or message.get("role") not in {"system", "user", "assistant"} \
                 or not isinstance(message.get("content"), str) or not message["content"].strip():
             raise PramaanError("invalid_generation_request")
@@ -338,7 +337,7 @@ class PramaanClient:
 
     # Feature contracts delivered on the platform catalogue; each stays false
     # until its own integration and fake checks are in place.
-    FEATURES = {
+    FEATURES: ClassVar[dict[str, bool]] = {
         "fee_payments": True,
         "email_delivery": True,
     }

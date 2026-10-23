@@ -13,8 +13,10 @@ class TestStudentApplicant(FrappeTestCase):
 
 class TestPublicAdmissionDefaults(FrappeTestCase):
 	def test_public_application_uses_school_owned_defaults(self):
-		import frappe
 		from unittest.mock import patch
+
+		import frappe
+
 		from education.education.doctype.student_applicant.student_applicant import StudentApplicant
 
 		register = frappe._dict(admission_based_on="Course", course="Public Course",
@@ -28,8 +30,10 @@ class TestPublicAdmissionDefaults(FrappeTestCase):
 			("School", "Public Course", "Public Fee Term", 120))
 
 	def test_public_application_rejects_a_course_outside_the_intake(self):
-		import frappe
 		from unittest.mock import patch
+
+		import frappe
+
 		from education.education.doctype.student_applicant.student_applicant import StudentApplicant
 
 		register = frappe._dict(admission_based_on="Program", courses=[frappe._dict(course="Allowed")])
@@ -38,8 +42,10 @@ class TestPublicAdmissionDefaults(FrappeTestCase):
 			doc.set_public_admission_details()
 
 	def test_unpublished_intakes_cannot_supply_public_defaults(self):
-		import frappe
 		from unittest.mock import patch
+
+		import frappe
+
 		from education.education.web_form.student_applicant.student_applicant import _application_details
 
 		with patch.object(frappe, "get_doc", return_value=frappe._dict(docstatus=1, published=0)), self.assertRaises(frappe.ValidationError):

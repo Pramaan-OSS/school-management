@@ -1,3 +1,5 @@
+[![CI](https://github.com/Pramaan-OSS/school-management/actions/workflows/ci.yml/badge.svg)](https://github.com/Pramaan-OSS/school-management/actions/workflows/ci.yml)
+
 # School Management
 
 A complete school administration product: admissions, students, attendance,

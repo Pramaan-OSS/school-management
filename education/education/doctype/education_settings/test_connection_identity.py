@@ -1,9 +1,11 @@
 """Meeting requests use the same identity as hosted app connections."""
 from unittest import TestCase
 from unittest.mock import Mock, patch
+
 import frappe
-from education.pramaan import PramaanClient
+
 from education.education import pramaan_features as features
+from education.pramaan import PramaanClient
 
 
 class TestConnectionIdentity(TestCase):
@@ -63,7 +65,8 @@ class TestConnectionIdentity(TestCase):
             calls.append((headers, body))
             return 200, {"ref": "checkout-fixture", "checkoutUrl": "https://checkout.school.test/pay"}
         fake = PramaanClient(api_key="fixture-only", transport=transport)
-        record = Mock(); record.name = "local-payment-fixture"
+        record = Mock()
+        record.name = "local-payment-fixture"
         details = frappe._dict(name="invoice-fixture", student="student-fixture", outstanding_amount=10.75, currency="USD")
         with patch.object(billing, "client", return_value=fake), patch.object(billing, "get_details", return_value=details), patch.object(billing, "_check_permission"), patch.object(frappe, "get_all", return_value=[]), patch.object(frappe, "get_doc", return_value=record):
             result = billing.create_checkout("Sales Invoice", "invoice-fixture", {"email": "payer@school.test"})

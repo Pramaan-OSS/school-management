@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/education/frontend/ && yarn copy-html-entry",
+    "build": "vite build --base=/assets/education/frontend/ && npm run copy-html-entry",
     "preview": "vite preview",
     "copy-html-entry": "cp ../education/public/frontend/index.html ../education/www/student-portal.html"
   },

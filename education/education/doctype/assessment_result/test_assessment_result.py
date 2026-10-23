@@ -10,12 +10,16 @@ from education.education.test_utils import create_grading_scale
 
 class TestAssessmentResult(FrappeTestCase):
 	def test_assessment_report_reads_current_result_fields(self):
-		from education.education.report.course_wise_assessment_report.course_wise_assessment_report import get_formatted_result
+		from education.education.report.course_wise_assessment_report.course_wise_assessment_report import (
+			get_formatted_result,
+		)
 		result = get_formatted_result(frappe._dict(academic_year="2023-2024", assessment_group="All Assessment Groups"))
 		self.assertIn("assessment_result", result)
 
 	def test_monthly_report_links_to_the_student_doctype(self):
-		from education.education.report.student_monthly_attendance_sheet.student_monthly_attendance_sheet import get_columns
+		from education.education.report.student_monthly_attendance_sheet.student_monthly_attendance_sheet import (
+			get_columns,
+		)
 		self.assertEqual(get_columns(31)[0]["options"], "Student")
 
 	def setUp(self):

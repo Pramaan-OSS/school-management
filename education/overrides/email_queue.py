@@ -3,6 +3,7 @@ from email import message_from_string
 
 import frappe
 from frappe.email.doctype.email_queue.email_queue import EmailQueue
+
 from education.integrations.pramaan_mail import marker_from, sendmail
 
 

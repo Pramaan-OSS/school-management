@@ -7,12 +7,13 @@ payment entry.
 """
 
 import uuid
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import ROUND_HALF_UP, Decimal
 
 import frappe
 from erpnext.accounts.doctype.payment_entry.payment_entry import get_payment_entry
 from frappe import _
 from frappe.utils import nowdate, validate_phone_number
+
 from education.pramaan import PramaanClient, PramaanError
 
 PAYABLE_DOCTYPE = "Sales Invoice"
@@ -145,7 +146,7 @@ def get_checkout_status(checkout: str, session_result: str | None = None):
     if not frappe.db.exists("Payment Record", checkout):
         frappe.throw(_("Invalid document provided."))
     record = frappe.get_doc("Payment Record", checkout)
-    user_student = frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
+    frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
     if record.owner != frappe.session.user:
         invoice = get_details(record.against_invoice)
         _check_permission(invoice)
