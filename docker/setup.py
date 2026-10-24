@@ -58,10 +58,9 @@ for name, source in [
     link = assets / name
     if not link.exists():
         link.symlink_to(source, target_is_directory=True)
-if not (assets / "assets.json").exists():
-    # The build's bundle map; without it pages ask for unhashed bundle paths.
-    built_map = ROOT / "sites" / "assets" / "assets.json"
-    (assets / "assets.json").write_text(built_map.read_text() if built_map.exists() else "{}")
+# The list persists in the sites volume, but its bundles belong to this image.
+built_map = ROOT / "sites" / "assets" / "assets.json"
+(assets / "assets.json").write_text(built_map.read_text())
 bench("--site", SITE, "migrate")
 bench("--site", SITE, "enable-scheduler")
 from education.pramaan import PramaanClient
